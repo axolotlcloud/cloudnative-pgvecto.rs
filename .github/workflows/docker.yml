@@ -44,9 +44,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3.0.0
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3.0.0
 
@@ -98,7 +95,6 @@ jobs:
         uses: docker/build-push-action@v5.1.0
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
           push: ${{ !github.event.pull_request.head.repo.fork && steps.metadata.outputs.tags != '' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
